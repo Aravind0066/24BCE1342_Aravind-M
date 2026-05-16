@@ -1,0 +1,36 @@
+show databases;
+create database A_24BCE1342;
+use A_24BCE1342;
+
+create database new1;
+drop database new1;
+
+ShoW DAtaBAsEs;
+ 
+ create database VITCampus1;
+ 
+ drop database VITcampUS1;
+ 
+ use vitCamPUS;
+ 
+ create table tab1(
+ sid int8,
+ sname varchar(50),
+ smarks int1
+ );
+  create table tab2(
+ sid int8,
+ sname varchar(50),
+ smarks int1
+ );
+  create table tab3(
+ sid int8,
+ sname varchar(50),
+ smarks int1
+ );
+ 
+ show tables from vitcampus;
+ 
+ select * from tab1;
+ 
+ insert into tab1 values (109, 'Kiran',99);

@@ -1,0 +1,120 @@
+SHOW DATABASES;
+
+USE vitcampus;
+
+SHOW TABLES;
+
+CREATE TABLE cse_students (
+    sid INT PRIMARY KEY,
+    sname VARCHAR(30),
+    smarks INT,
+    sdept VARCHAR(20)
+);
+
+DESC cse_students;
+
+INSERT INTO cse_students VALUES
+(101,'Aravind',95,'CSE'),
+(102,'Rahul',88,'CSE');
+
+SELECT * FROM cse_students;
+
+ALTER TABLE cse_students ADD (
+    sphone BIGINT,
+    sphone2 BIGINT
+);
+
+ALTER TABLE cse_students DROP COLUMN sphone2;
+
+ALTER TABLE cse_students ADD (
+    scountry VARCHAR(30) DEFAULT 'India'
+);
+
+INSERT INTO cse_students VALUES
+(103,'Karthik',91,'CSE',9876543210,'Sri Lanka');
+
+ALTER TABLE cse_students RENAME COLUMN scountry TO slocation;
+
+SELECT * FROM cse_students;
+
+TRUNCATE TABLE cse_students;
+
+DROP TABLE cse_students;
+
+
+
+CREATE TABLE worker_data (
+    wid INT PRIMARY KEY AUTO_INCREMENT,
+    fname VARCHAR(25),
+    lname VARCHAR(25),
+    salary INT,
+    joining_date DATETIME,
+    dept VARCHAR(25)
+);
+
+INSERT INTO worker_data 
+(wid, fname, lname, salary, joining_date, dept) VALUES
+(1,'Aravind','M',100000,'2024-02-20 09:00:00','CSE'),
+(2,'Rohit','K',80000,'2024-06-11 09:00:00','ECE'),
+(3,'Vishal','S',300000,'2024-02-20 09:00:00','CSE'),
+(4,'Amit','R',500000,'2024-02-20 09:00:00','ECE');
+
+SELECT * FROM worker_data;
+
+UPDATE worker_data 
+SET fname='Aravind', lname='M'
+WHERE wid=1;
+
+UPDATE worker_data 
+SET salary = salary + 5000;
+
+DELETE FROM worker_data 
+WHERE wid=4;
+
+
+
+CREATE TABLE ece_demo (
+    id INT
+);
+
+START TRANSACTION;
+
+INSERT INTO ece_demo VALUES(1);
+
+SAVEPOINT p1;
+
+INSERT INTO ece_demo VALUES(2);
+
+SAVEPOINT p2;
+
+INSERT INTO ece_demo VALUES(3);
+
+SELECT * FROM ece_demo;
+
+ROLLBACK TO p2;
+
+
+
+CREATE TABLE emp_demo (
+    id INT
+);
+
+START TRANSACTION;
+
+INSERT INTO emp_demo VALUES(101);
+
+SAVEPOINT a1;
+
+INSERT INTO emp_demo VALUES(102);
+
+SAVEPOINT a2;
+
+INSERT INTO emp_demo VALUES(103);
+
+SAVEPOINT a3;
+
+ROLLBACK TO a1;
+
+COMMIT;
+
+SELECT * FROM emp_demo;

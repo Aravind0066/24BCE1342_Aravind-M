@@ -30,16 +30,14 @@ ALTER TABLE cse_students ADD (
     scountry VARCHAR(30) DEFAULT 'India'
 );
 
-INSERT INTO cse_students VALUES
+INSERT INTO cse_students 
+(sid,sname,smarks,sdept,sphone,scountry)
+VALUES
 (103,'Karthik',91,'CSE',9876543210,'Sri Lanka');
 
 ALTER TABLE cse_students RENAME COLUMN scountry TO slocation;
 
 SELECT * FROM cse_students;
-
-TRUNCATE TABLE cse_students;
-
-DROP TABLE cse_students;
 
 
 
@@ -118,3 +116,17 @@ ROLLBACK TO a1;
 COMMIT;
 
 SELECT * FROM emp_demo;
+
+
+
+TRUNCATE TABLE cse_students;
+
+DROP TABLE cse_students;
+
+
+
+SELECT * FROM cse_students WHERE smarks > 90;
+SELECT * FROM cse_students WHERE smarks = 95;
+SELECT * FROM cse_students WHERE smarks <> 95;
+SELECT * FROM worker_data WHERE salary >= 100000;
+SELECT * FROM worker_data WHERE dept = 'CSE';

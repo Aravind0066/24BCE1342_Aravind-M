@@ -1,0 +1,112 @@
+USE vitcampus;
+
+SELECT * FROM worker_data;
+
+SELECT fname,dept,salary FROM worker_data
+WHERE dept='Admin' OR salary>=100000;
+
+SELECT fname,dept,salary FROM worker_data
+WHERE dept='Admin' AND salary>=100000;
+
+SELECT wid,fname,dept,salary FROM worker_data
+WHERE wid IN (1,2,3);
+
+SELECT wid,fname,dept,salary FROM worker_data
+WHERE wid NOT IN (1,2,3);
+
+SELECT * FROM worker_data 
+WHERE salary BETWEEN 110000 AND 300000;
+
+SELECT * FROM worker_data 
+WHERE salary NOT BETWEEN 110000 AND 300000;
+
+SELECT * FROM worker_data 
+WHERE salary BETWEEN 100000 AND 500000
+AND dept NOT IN ('HR','Admin');
+
+SELECT * FROM worker_data 
+WHERE salary BETWEEN 200000 AND 500000
+OR dept IN ('HR','Account');
+
+SELECT * FROM worker_data 
+WHERE joining_date BETWEEN '2024-02-20' AND '2024-06-11'
+AND salary > 300000;
+
+SELECT * FROM worker_data 
+WHERE joining_date BETWEEN '2024-02-20' AND '2024-06-11'
+AND salary NOT IN (110000,310000);
+
+SELECT * FROM worker_data
+WHERE fname LIKE '__i%';
+
+SELECT * FROM worker_data
+WHERE fname LIKE 'V%e_';
+
+SELECT * FROM worker_data
+WHERE fname LIKE '_i__%';
+
+SELECT * FROM worker_data
+WHERE fname LIKE '_i__a%';
+
+SELECT * FROM worker_data 
+WHERE fname LIKE '_rav%';
+
+SELECT * FROM worker_data
+WHERE lname LIKE 'S%';
+
+SELECT * FROM worker_data 
+WHERE lname LIKE '_';
+
+SELECT MIN(salary) FROM worker_data;
+
+SELECT MIN(salary) FROM worker_data
+WHERE dept='Admin';
+
+SELECT MAX(salary) FROM worker_data
+WHERE dept='HR';
+
+SELECT COUNT(wid) FROM worker_data
+WHERE dept='Admin';
+
+SELECT SUM(salary) FROM worker_data
+WHERE dept='HR';
+
+SELECT AVG(salary) FROM worker_data
+WHERE dept='Account';
+
+SELECT MIN(salary) FROM worker_data
+WHERE dept='Admin' AND (fname NOT LIKE '%A%' AND fname NOT LIKE '%a%');
+
+SELECT salary FROM worker_data
+UNION ALL
+SELECT salary FROM worker_data;
+
+SELECT salary FROM worker_data
+UNION
+SELECT salary FROM worker_data;
+
+SELECT wid AS rollnumber FROM worker_data;
+
+SELECT DISTINCT(dept) FROM worker_data;
+
+SELECT * FROM worker_data;
+
+SELECT wid,fname,
+CASE
+    WHEN salary > 300000 THEN 'Rich'
+    WHEN salary >= 100000 AND salary < 300000 THEN 'Middle'
+    ELSE 'Poor'
+END AS status
+FROM worker_data;
+
+CREATE VIEW minSalaryAdmin AS 
+SELECT MIN(salary) FROM worker_data
+WHERE dept='Admin';
+
+CREATE VIEW maxSalaryAdmin AS 
+SELECT MAX(salary) FROM worker_data
+WHERE dept='Admin';
+
+SELECT * FROM minSalaryAdmin;
+
+SELECT * FROM maxSalaryAdmin;

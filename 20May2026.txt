@@ -1,0 +1,41 @@
+use vitcampus;
+
+create table dept (
+    did int primary key,
+    dname varchar(100) not null unique
+);
+
+desc dept;
+
+insert into dept values (1,'CSE'),(2,'ECE');
+
+create table student (
+    regno int primary key,
+    name varchar(100) not null,
+    dept varchar(50),
+    age int not null,
+    did int,
+    unique(name),
+    check (age>=18 and age<=23),
+    foreign key (did) references dept(did)
+);
+
+desc student;
+
+insert into student values (241342,'Aravind','CSE',20,1);
+
+select * from student;
+
+create table course (
+    cid int primary key,
+    cname varchar(100) not null,
+    code int unique not null,
+    did int,
+    foreign key (did) references dept(did)
+);
+
+desc course;
+
+insert into course values (101,'DBMS',5001,1);
+
+select * from course;
